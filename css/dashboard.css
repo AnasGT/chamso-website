@@ -1,0 +1,947 @@
+/* Dashboard Specific Styles */
+
+/* Dashboard Layout */
+.dashboard-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, var(--ivory-white) 0%, var(--subtle-beige) 100%);
+}
+
+.dashboard-header {
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+    color: var(--ivory-white);
+    padding: var(--spacing-md) 0;
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.dashboard-header .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-header .logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.dashboard-header .logo h1 {
+    font-family: var(--font-secondary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Dashboard Main Content */
+.dashboard-main {
+    flex: 1;
+    padding: var(--spacing-xl) var(--spacing-md);
+}
+
+.dashboard-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.page-header h2 {
+    font-family: var(--font-secondary);
+    font-size: 2.2rem;
+    color: var(--primary-green);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 700;
+}
+
+.welcome-message {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.teacher-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+/* Dashboard Cards */
+.dashboard-card {
+    background: var(--ivory-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.dashboard-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-green), var(--secondary-green));
+}
+
+.card-header {
+    background: var(--light-gold);
+    padding: var(--spacing-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.card-header h3 {
+    margin: 0;
+    color: var(--primary-green);
+    font-family: var(--font-secondary);
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+.card-icon {
+    font-size: 1.5rem;
+    opacity: 0.7;
+}
+
+.card-content {
+    padding: var(--spacing-lg);
+}
+
+/* Attendance Section */
+.attendance-section {
+    text-align: center;
+}
+
+.attendance-status {
+    background: var(--light-green);
+    border: 1px solid var(--secondary-green);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.attendance-status.attended {
+    background: var(--light-green);
+    border-color: var(--success-green);
+    color: var(--success-green);
+}
+
+.attendance-status.not-attended {
+    background: #FFF3E0;
+    border-color: var(--warning-orange);
+    color: var(--warning-orange);
+}
+
+.attendance-status p {
+    margin: 0;
+    font-weight: 600;
+}
+
+.attendance-grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.attendance-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 0.75rem;
+    border-radius: 8px;
+}
+
+.student-name {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.attendance-time {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Schedule Section */
+.schedule-controls {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+    justify-content: center;
+}
+
+.schedule-content {
+    min-height: 150px;
+}
+
+.schedule-list {
+    space-y: var(--spacing-sm);
+}
+
+.schedule-item {
+    background: var(--subtle-beige);
+    border: 1px solid #e0e0e0;
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    position: relative;
+}
+
+.schedule-item h4 {
+    margin: 0 0 var(--spacing-xs) 0;
+    color: var(--primary-green);
+    font-weight: 600;
+}
+
+.schedule-item .schedule-meta {
+    display: flex;
+    gap: var(--spacing-md);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-xs);
+}
+
+.schedule-item p {
+    margin: 0;
+    color: var(--text-dark);
+    line-height: 1.5;
+}
+
+.schedule-item .schedule-actions {
+    position: absolute;
+    top: var(--spacing-sm);
+    left: var(--spacing-sm);
+}
+
+.schedule-item .btn-small {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.8rem;
+    border-radius: var(--radius-sm);
+}
+
+/* Notes Section */
+.notes-content {
+    min-height: 120px;
+    background: var(--subtle-beige);
+    border: 1px solid #e0e0e0;
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-md);
+}
+
+.notes-content.empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.note-item {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.note-item .note-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-xs);
+}
+
+.note-item .note-text {
+    color: var(--text-dark);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.note-content {
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+}
+
+.note-meta {
+    color: #666;
+    text-align: left;
+}
+
+.note-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.student-notes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.note-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.note-card.unread {
+    border-right: 4px solid #3498db;
+}
+
+.note-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+.note-content {
+    color: #333;
+    line-height: 1.5;
+}
+
+/* Account Management */
+.account-card .card-content {
+    text-align: center;
+}
+
+.account-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.account-actions small {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* Teacher Dashboard Specific */
+.attendance-controls {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+    align-items: center;
+}
+
+.attendance-controls input {
+    flex: 1;
+}
+
+.attendance-list {
+    min-height: 200px;
+}
+
+.attendance-item {
+    background: var(--subtle-beige);
+    border: 1px solid #e0e0e0;
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.attendance-item .student-info {
+    flex: 1;
+}
+
+.attendance-item .student-name {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0 0 var(--spacing-xs) 0;
+}
+
+.attendance-item .attendance-time {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.attendance-item .attendance-badge {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.attendance-badge.present {
+    background: var(--light-green);
+    color: var(--success-green);
+}
+
+.attendance-badge.absent {
+    background: #FFEBEE;
+    color: var(--error-red);
+}
+
+/* Student Selection */
+.students-list {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+    align-items: center;
+}
+
+.students-list select {
+    flex: 1;
+}
+
+.notes-section {
+    margin-top: var(--spacing-lg);
+    display: none;
+}
+
+.notes-section textarea {
+    margin-bottom: 1rem;
+    resize: vertical;
+}
+
+/* Statistics */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.stat-item {
+    text-align: center;
+    padding: var(--spacing-md);
+    background: var(--light-gold);
+    border-radius: var(--radius-md);
+    border: 1px solid #e0e0e0;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-green);
+    margin-bottom: var(--spacing-xs);
+    font-family: var(--font-secondary);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Current Schedule */
+.current-schedule {
+    margin-top: var(--spacing-lg);
+}
+
+.current-schedule h4 {
+    margin: 0 0 var(--spacing-md) 0;
+    color: var(--primary-green);
+    font-weight: 600;
+    border-bottom: 2px solid var(--light-green);
+    padding-bottom: var(--spacing-xs);
+}
+
+/* No Data State */
+.no-data {
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: var(--spacing-xl);
+    margin: 0;
+}
+
+/* Success/Error Messages */
+.message {
+    padding: var(--spacing-md);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--spacing-md);
+    font-weight: 500;
+}
+
+.message.success {
+    background: var(--light-green);
+    color: var(--success-green);
+    border: 1px solid var(--success-green);
+}
+
+.message.error {
+    background: #FFEBEE;
+    color: var(--error-red);
+    border: 1px solid var(--error-red);
+}
+
+.message.warning {
+    background: #FFF3E0;
+    color: var(--warning-orange);
+    border: 1px solid var(--warning-orange);
+}
+
+/* Responsive Design for Dashboard */
+@media (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--spacing-md);
+    }
+    
+    .teacher-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-header .header-content {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        text-align: center;
+    }
+    
+    .user-menu {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .dashboard-main {
+        padding: var(--spacing-lg) var(--spacing-sm);
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .page-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .schedule-controls,
+    .attendance-controls,
+    .students-list {
+        flex-direction: column;
+    }
+    
+    .attendance-item {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-sm);
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-header .logo h1 {
+        font-size: 1.2rem;
+    }
+    
+    .page-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .card-header,
+    .card-content {
+        padding: var(--spacing-md);
+    }
+    
+    .card-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
+}
+
+/* Print Styles for Dashboard */
+@media print {
+    .dashboard-header,
+    .btn,
+    .modal {
+        display: none !important;
+    }
+    
+    .dashboard-main {
+        padding: 0;
+    }
+    
+    .dashboard-card {
+        break-inside: avoid;
+        margin-bottom: var(--spacing-lg);
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+    
+    .dashboard-grid {
+        display: block;
+    }
+    
+    .page-header {
+        border-bottom: 2px solid #000;
+        padding-bottom: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+    }
+}
+
+/* Animation for Dashboard Elements */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dashboard-card {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.dashboard-card:nth-child(1) { animation-delay: 0.1s; }
+.dashboard-card:nth-child(2) { animation-delay: 0.2s; }
+.dashboard-card:nth-child(3) { animation-delay: 0.3s; }
+.dashboard-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* Hover Effects */
+.schedule-item:hover,
+.attendance-item:hover,
+.note-item:hover {
+    background: var(--light-gold);
+    transition: background-color 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+/* Focus States for Accessibility */
+.dashboard-card:focus-within {
+    outline: 2px solid var(--primary-green);
+    outline-offset: 2px;
+}
+
+.btn:focus {
+    outline: 2px solid var(--primary-green);
+    outline-offset: 2px;
+}
+
+/* Loading States */
+.loading-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+    color: var(--text-muted);
+}
+
+.loading-content::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e0e0e0;
+    border-top: 2px solid var(--primary-green);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: var(--spacing-sm);
+}
+
+.loading-spinner {
+    text-align: center;
+    padding: 20px;
+}
+
+.spinner {
+    animation: rotate 2s linear infinite;
+    width: 50px;
+    height: 50px;
+    margin: 20px auto;
+}
+
+.path {
+    stroke: #007bff;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -35;
+    }
+    100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -124;
+    }
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    margin: auto;
+    transform: translateX(0) !important; /* Override RTL transformation */
+    right: auto !important;
+    left: auto !important;
+}
+
+/* Loading State */
+.loading-state {
+    text-align: center;
+    padding: 2rem;
+}
+
+.loading-spinner .spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    margin: 0 auto;
+    animation: spin 1s linear infinite;
+}
+
+.loading-text {
+    margin-top: 1rem;
+    color: #666;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Schedule Grid */
+.schedule-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.schedule-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.schedule-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.schedule-time {
+    background: #3498db;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.schedule-time .time {
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: block;
+}
+
+.schedule-time .date {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.schedule-details {
+    padding: 1rem;
+}
+
+.schedule-details h4 {
+    margin: 0 0 0.5rem;
+    color: #2c3e50;
+}
+
+.schedule-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+.schedule-meta .icon {
+    margin-left: 0.3rem;
+}
+
+.description {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+}
+
+/* Empty & Error States */
+.empty-state, .error-state {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+}
+
+/* Modern Loading States */
+.loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    width: 100%;
+}
+
+.pulse-loader {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #3498db;
+    animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    50% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.8); opacity: 0.5; }
+}
+
+.fade-enter {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.fade-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+/* Simplified Attendance Display */
+.progress-bar {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, #f0f0f0 30%, #3498db 50%, #f0f0f0 70%);
+    background-size: 200% 100%;
+    animation: loading 1s linear infinite;
+}
+
+@keyframes loading {
+    to { background-position: -200% 0; }
+}
+
+.attendance-container {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.attendance-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-bottom: 1px solid #eee;
+}
+
+.student-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.student-row.present {
+    background-color: #f1f9f1;
+}
+
+.student-row.absent {
+    color: #666;
+}
+
+.status-icon {
+    font-weight: bold;
+}
+
+.present .status-icon {
+    color: #28a745;
+}

@@ -1,0 +1,68 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Basic user validation
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Check if user is a teacher
+    function isTeacher() {
+      return isAuthenticated() && 
+             exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'teacher';
+    }
+
+    // Check if user is a student
+    function isStudent() {
+      return isAuthenticated() && 
+             exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'student';
+    }
+    
+    // Users collection
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    // Classes collection
+    match /classes/{classId} {
+      allow read: if isAuthenticated();
+      allow create, update: if isTeacher();
+      allow delete: if isTeacher() && resource.data.teacherId == request.auth.uid;
+    }
+    
+    // Attendance collection
+    match /attendance/{attendanceId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated();
+    }
+    
+    // Notes from teacher to student (new collection)
+    match /teacher_notes/{noteId} {
+      allow read: if isAuthenticated() && (
+        isTeacher() || 
+        (isStudent() && resource.data.studentId == request.auth.uid)
+      );
+      allow create, update: if isTeacher();
+      allow delete: if isTeacher() && resource.data.teacherId == request.auth.uid;
+    }
+    
+    // Notes from students to teacher
+    match /student_notes/{noteId} {
+      allow read: if isTeacher() || (isStudent() && resource.data.studentId == request.auth.uid);
+      allow create: if isStudent() && request.resource.data.studentId == request.auth.uid;
+      allow update: if isTeacher();
+      allow delete: if isTeacher() || (isStudent() && resource.data.studentId == request.auth.uid);
+    }
+    
+    // Schema collection (protected)
+    match /_schema/{schemaId} {
+      allow read: if isAuthenticated();
+      allow write: if isTeacher(); // Changed from false to allow teachers to write
+    }
+  }
+}

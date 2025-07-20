@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم الأستاذ - منصة تعلم القرآن الكريم</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">📖</div>
+                    <h1>منصة تعلم القرآن الكريم</h1>
+                </div>
+                <div class="user-menu">
+                    <span id="userName" class="user-name"></span>
+                    <button class="btn btn-secondary" onclick="logout()">تسجيل الخروج</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+            <div class="dashboard-content">
+                <div class="page-header">
+                    <h2>لوحة تحكم الأستاذ</h2>
+                    <p class="welcome-message">بارك الله فيك أستاذنا الفاضل</p>
+                </div>
+
+                <div class="dashboard-grid teacher-grid">
+                    <!-- Schedule Management -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>إدارة الجدول</h3>
+                            <div class="card-icon">📅</div>
+                        </div>
+                        <div class="card-content">
+                            <button class="btn btn-primary" onclick="showAddScheduleModal()">
+                                إضافة حصة جديدة
+                            </button>
+                            <div id="currentSchedule" class="current-schedule">
+                                <h4>الجدول الحالي</h4>
+                                <div id="scheduleList" class="schedule-list">
+                                    <p class="no-data">لا توجد حصص مجدولة</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attendance Management -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>إدارة الحضور</h3>
+                            <div class="card-icon">✓</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="attendance-controls">
+                                <input type="date" id="attendanceDate" class="form-control">
+                                <button class="btn btn-outline" onclick="loadAttendanceByDate()">
+                                    عرض الحضور
+                                </button>
+                            </div>
+                            <div id="attendanceList" class="attendance-list">
+                                <p class="no-data">اختر تاريخاً لعرض الحضور</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Statistics -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>الإحصائيات</h3>
+                            <div class="card-icon">📊</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-number" id="totalStudents">0</div>
+                                    <div class="stat-label">إجمالي الطلاب</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" id="todayAttendance">0</div>
+                                    <div class="stat-label">حضور اليوم</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" id="weeklyClasses">0</div>
+                                    <div class="stat-label">حصص الأسبوع</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- New Student Notes Container -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>ملاحظات الطلاب</h3>
+                            <div class="card-icon">✉️</div>
+                        </div>
+                        <div class="card-content">
+                            <div id="studentNotesContainer" class="student-notes-container">
+                                <p class="no-data">لا توجد ملاحظات جديدة</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Student Notes Section -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>إضافة ملاحظة للطالب</h3>
+                            <div class="card-icon">📝</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="note-form">
+                                <select id="studentSelect" class="form-control">
+                                    <option value="">اختر طالباً</option>
+                                </select>
+                                <textarea id="teacherNoteContent" class="form-control" 
+                                    placeholder="اكتب ملاحظتك هنا..." rows="3"></textarea>
+                                <button class="btn btn-primary" onclick="addNoteToStudent()">
+                                    حفظ الملاحظة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Schedule Modal -->
+    <div id="addScheduleModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>إضافة حصة جديدة</h3>
+                <span class="close" onclick="closeModal('addScheduleModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="scheduleForm">
+                    <div class="form-group">
+                        <label for="classTitle">عنوان الحصة</label>
+                        <input type="text" id="classTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="classDate">التاريخ</label>
+                        <input type="date" id="classDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="classTime">الوقت</label>
+                        <input type="time" id="classTime" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="classDuration">المدة (بالدقائق)</label>
+                        <input type="number" id="classDuration" value="60" min="15" max="180">
+                    </div>
+                    <div class="form-group">
+                        <label for="classDescription">وصف الحصة</label>
+                        <textarea id="classDescription" rows="3"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('addScheduleModal')">
+                            إلغاء
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            إضافة الحصة
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>جاري التحميل...</p>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { checkTeacherAuth, handleLogout } from './js/auth-utils.js';
+        
+        // Check authentication on page load
+        checkTeacherAuth().catch(console.error);
+        
+        // Make logout function available globally
+        window.logout = handleLogout;
+    </script>
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/teacher-dashboard.js"></script>
+</body>
+</html>

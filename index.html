@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة تعلم القرآن الكريم - تعليم متميز للقرآن الكريم</title>
+    <meta name="description" content="منصة تعليمية متكاملة لتعلم وتعليم القرآن الكريم بأحدث الوسائل التقنية والمناهج التربوية المتطورة">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/landing.css">
+    <style>
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            margin: 0 auto;
+            right: auto !important; /* Override any RTL positioning */
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navigation Header -->
+        <header class="main-header">
+            <nav class="navbar">
+                <div class="nav-content">
+                    <div class="logo-section">
+                        <div class="logo-icon">📖</div>
+                        <div class="logo-text">
+                            <h1>منصة تعلم القرآن الكريم</h1>
+                            <span class="tagline">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</span>
+                        </div>
+                    </div>
+                    <div class="nav-actions" id="navActions">
+                        <!-- Buttons will be dynamically inserted here -->
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2 class="hero-title">
+                        <span class="highlight">تعلم القرآن الكريم</span>
+                        <br>
+                        <br>بأحدث الوسائل التعليمية
+                    </h2>
+                    <p class="hero-description">
+                        منصة تعليمية متكاملة تجمع بين التقنية الحديثة والمناهج التربوية الأصيلة 
+                        لتوفير تجربة تعليمية مميزة في تعلم وتعليم القرآن الكريم
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">1000+</div>
+                            <div class="stat-label">طالب مسجل</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">أستاذ معتمد</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">متاح دائماً</div>
+                        </div>
+                    </div>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary btn-large" onclick="showRegisterModal()">
+                            ابدأ رحلتك التعليمية
+                        </button>
+                        <button class="btn btn-secondary btn-large" onclick="scrollToFeatures()">
+                            اكتشف المزيد
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="quran-illustration">
+                        <div class="islamic-pattern-bg"></div>
+                        <div class="quran-icon">📖</div>
+                        <div class="floating-elements">
+                            <div class="element element-1">🕌</div>
+                            <div class="element element-2">✨</div>
+                            <div class="element element-3">📿</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features-section">
+            <div class="section-content">
+                <div class="section-header">
+                    <h3 class="section-title">مميزات المنصة</h3>
+                    <p class="section-subtitle">
+                        نوفر لك أفضل الأدوات والوسائل لتعلم القرآن الكريم بطريقة عصرية ومتطورة
+                    </p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">👨‍🎓</div>
+                        <h4>للطلاب</h4>
+                        <ul class="feature-list">
+                            <li>تسجيل الحضور اليومي</li>
+                            <li>متابعة الجدول الدراسي</li>
+                            <li>استقبال ملاحظات الأستاذ</li>
+                            <li>تتبع التقدم الأكاديمي</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">👨‍🏫</div>
+                        <h4>للأساتذة</h4>
+                        <ul class="feature-list">
+                            <li>إدارة الجدول الدراسي</li>
+                            <li>متابعة حضور الطلاب</li>
+                            <li>كتابة الملاحظات الشخصية</li>
+                            <li>إحصائيات شاملة</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h4>الأمان والخصوصية</h4>
+                        <ul class="feature-list">
+                            <li>حماية البيانات الشخصية</li>
+                            <li>تشفير المعلومات</li>
+                            <li>صلاحيات محددة لكل مستخدم</li>
+                            <li>نسخ احتياطية آمنة</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="how-it-works-section">
+            <div class="section-content">
+                <div class="section-header">
+                    <h3 class="section-title">كيف تعمل المنصة؟</h3>
+                    <p class="section-subtitle">
+                        خطوات بسيطة للبدء في رحلتك التعليمية
+                    </p>
+                </div>
+                
+                <div class="steps-container">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>إنشاء الحساب</h4>
+                            <p>سجل حساباً جديداً باستخدام البريد الإلكتروني أو حساب جوجل</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>اختيار الدور</h4>
+                            <p>حدد دورك في المنصة: طالب للتعلم أو أستاذ للتدريس</p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>إكمال الملف الشخصي</h4>
+                            <p>أدخل بياناتك الشخصية لإكمال عملية التسجيل</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>ابدأ التعلم</h4>
+                            <p>استمتع بتجربة تعليمية متميزة ومتابعة مستمرة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits-section">
+            <div class="section-content">
+                <div class="benefits-grid">
+                    <div class="benefits-text">
+                        <h3 class="section-title">لماذا تختار منصتنا؟</h3>
+                        <div class="benefits-list">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">⭐</div>
+                                <div class="benefit-text">
+                                    <h4>جودة تعليمية عالية</h4>
+                                    <p>مناهج معتمدة وأساتذة مؤهلون لضمان أفضل تجربة تعليمية</p>
+                                </div>
+                            </div>
+                            
+                            <div class="benefit-item">
+                                <div class="benefit-icon">📱</div>
+                                <div class="benefit-text">
+                                    <h4>سهولة الاستخدام</h4>
+                                    <p>واجهة بسيطة ومتجاوبة تعمل على جميع الأجهزة</p>
+                                </div>
+                            </div>
+                            
+                            <div class="benefit-item">
+                                <div class="benefit-icon">📊</div>
+                                <div class="benefit-text">
+                                    <h4>متابعة مستمرة</h4>
+                                    <p>تقارير دورية وإحصائيات مفصلة لمتابعة التقدم</p>
+                                </div>
+                            </div>
+                            
+                            <div class="benefit-item">
+                                <div class="benefit-icon">🤝</div>
+                                <div class="benefit-text">
+                                    <h4>دعم فني متميز</h4>
+                                    <p>فريق دعم متخصص لمساعدتك في أي وقت</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="benefits-visual">
+                        <div class="islamic-calligraphy">
+                            <div class="calligraphy-text">
+                                وَقُل رَّبِّ زِدْنِي عِلْمًا
+                            </div>
+                            <div class="calligraphy-translation">
+                                "وقل ربي زدني علماً"
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials-section">
+            <div class="section-content">
+                <div class="section-header">
+                    <h3 class="section-title">آراء المستخدمين</h3>
+                    <p class="section-subtitle">
+                        ماذا يقول طلابنا وأساتذتنا عن المنصة
+                    </p>
+                </div>
+                
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"منصة رائعة ساعدتني في تنظيم دروسي ومتابعة طلابي بشكل أفضل. الواجهة سهلة والميزات مفيدة جداً."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>أمال جغوبي </h4>
+                                <span>أستاذة قرآن كريم</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"أصبح بإمكاني متابعة جدولي الدراسي وتسجيل حضوري بسهولة. المنصة جعلت تعلم القرآن أكثر تنظيماً."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>فاطمة بن سالم</h4>
+                                <span>طالبة</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"التصميم جميل ومناسب لطبيعة تعلم القرآن. الألوان هادئة والخط واضح. تجربة مريحة للعين والنفس."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>محمد حريد</h4>
+                                <span>أستاذ قرآن كريم</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="section-content">
+                <div class="cta-content">
+                    <h3 class="cta-title">ابدأ رحلتك التعليمية اليوم</h3>
+                    <p class="cta-description">
+                        انضم إلى آلاف الطلاب والأساتذة الذين يستخدمون منصتنا لتعلم وتعليم القرآن الكريم
+                    </p>
+                    <div class="cta-actions">
+                        <button class="btn btn-primary btn-large" onclick="showRegisterModal()">
+                            إنشاء حساب مجاني
+                        </button>
+                        <button class="btn btn-outline btn-large" onclick="showLoginModal()">
+                            لديك حساب؟ سجل دخولك
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="logo-icon">📖</div>
+                        <h4>منصة تعلم القرآن الكريم</h4>
+                    </div>
+                    <p>منصة تعليمية متكاملة لتعلم وتعليم القرآن الكريم بأحدث الوسائل التقنية</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="#features">المميزات</a></li>
+                        <li><a href="#how-it-works">كيف تعمل</a></li>
+                        <li><a href="#benefits">الفوائد</a></li>
+                        <li><a href="#testimonials">آراء المستخدمين</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>تواصل معنا</h4>
+                    <div class="contact-info">
+                        <p>📧 amelloulou822@gmail.com </p>
+                        <p>📞 0556818359 </p>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; ٢٠٢٥ منصة تعلم القرآن الكريم. جميع الحقوق محفوظة.</p>
+                <div class="footer-verse">
+                    <span class="verse-text">وَقُل رَّبِّ زِدْنِي عِلْمًا</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>تسجيل الدخول</h3>
+                <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">البريد الإلكتروني</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">كلمة المرور</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">دخول</button>
+                </form>
+                
+                <div class="divider">
+                    <span>أو</span>
+                </div>
+                
+                <button id="googleSignIn" class="btn btn-google btn-full">
+                    <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" class="google-icon">
+                    تسجيل الدخول بجوجل
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>إنشاء حساب جديد</h3>
+                <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerEmail">البريد الإلكتروني</label>
+                        <input type="email" id="registerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">كلمة المرور</label>
+                        <input type="password" id="registerPassword" required minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">تأكيد كلمة المرور</label>
+                        <input type="password" id="confirmPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">إنشاء الحساب</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Role Selection Modal -->
+    <div id="roleModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>اختيار الدور</h3>
+            </div>
+            <div class="modal-body">
+                <p>الرجاء اختيار دورك في المنصة:</p>
+                <div class="role-selection">
+                    <button class="role-btn" onclick="selectRole('student')">
+                        <div class="role-icon">🎓</div>
+                        <h4>طالب</h4>
+                        <p>للتعلم ومتابعة الدروس</p>
+                    </button>
+                    <button class="role-btn" onclick="selectRole('teacher')">
+                        <div class="role-icon">👨‍🏫</div>
+                        <h4>أستاذ</h4>
+                        <p>لتدريس وإدارة الطلاب</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Setup Modal -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>إكمال الملف الشخصي</h3>
+            </div>
+            <div class="modal-body">
+                <form id="profileForm">
+                    <div class="form-group">
+                        <label for="firstName">الاسم الأول</label>
+                        <input type="text" id="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">اسم العائلة</label>
+                        <input type="text" id="lastName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="birthDate">تاريخ الميلاد</label>
+                        <input type="date" id="birthDate" required>
+                    </div>
+                    <div id="teacherCode" class="form-group" style="display: none;">
+                        <label for="accessCode">رمز الدخول (للأساتذة)</label>
+                        <input type="password" id="accessCode" placeholder="أدخل رمز الدخول">
+                        <small>رمز الدخول مطلوب للأساتذة فقط</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">حفظ البيانات</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>جاري التحميل...</p>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+        import { getFirestore, doc, getDoc, setDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCO54SQWfIPTL4lWgAJObXQWcxF3RCPOEs",
+            authDomain: "quran-8af1a.firebaseapp.com",
+            projectId: "quran-8af1a",
+            storageBucket: "quran-8af1a.firebasestorage.app",
+            messagingSenderId: "898962069347",
+            appId: "1:898962069347:web:bbb097e0a9acdce278e556",
+            measurementId: "G-XE7LDEV3Q1"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const googleProvider = new GoogleAuthProvider();
+
+        // Modal handling functions
+        function showModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        window.showLoginModal = () => showModal('loginModal');
+        window.showRegisterModal = () => showModal('registerModal');
+        window.closeModal = closeModal;
+
+        // Loading overlay functions
+        function showLoading() {
+            document.getElementById('loading').style.display = 'flex';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        // Update navigation based on auth state
+        async function updateNavigation(user) {
+            const navActions = document.getElementById('navActions');
+            if (user) {
+                // Get user role from database
+                const userData = await getUserData(user.uid);
+                const dashboardUrl = userData?.role === 'teacher' ? 
+                    'teacher-dashboard.html' : 'student-dashboard.html';
+                
+                navActions.innerHTML = `
+                    <button class="btn btn-primary" onclick="window.location.href='${dashboardUrl}'">لوحة التحكم</button>
+                    <button class="btn btn-outline" onclick="handleLogout()">تسجيل الخروج</button>
+                `;
+            } else {
+                navActions.innerHTML = `
+                    <button class="btn btn-outline" onclick="showLoginModal()">تسجيل الدخول</button>
+                    <button class="btn btn-primary" onclick="showRegisterModal()">إنشاء حساب</button>
+                `;
+            }
+        }
+
+        // Handle logout
+        window.handleLogout = async () => {
+            try {
+                await signOut(auth);
+                // Redirect to home page or show success message
+                window.location.href = '/';
+            } catch (error) {
+                alert('Error signing out: ' + error.message);
+            }
+        };
+
+        // Listen for auth state changes
+        onAuthStateChanged(auth, (user) => {
+            updateNavigation(user);
+        });
+
+        // Add this function to get user data
+        async function getUserData(userId) {
+            try {
+                const userDoc = await getDoc(doc(db, 'users', userId));
+                if (userDoc.exists()) {
+                    return userDoc.data();
+                }
+                return null;
+            } catch (error) {
+                console.error('Error getting user data:', error);
+                return null;
+            }
+        }
+
+        // Handle login form submission
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            showLoading();
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const userData = await getUserData(userCredential.user.uid);
+                
+                if (userData) {
+                    // Redirect based on role
+                    window.location.href = userData.role === 'teacher' ? 
+                        'teacher-dashboard.html' : 'student-dashboard.html';
+                } else {
+                    alert('User data not found');
+                }
+            } catch (error) {
+                alert('Error logging in: ' + error.message);
+            } finally {
+                hideLoading();
+            }
+        });
+
+        // Handle Google Sign In
+        document.getElementById('googleSignIn').addEventListener('click', async () => {
+            showLoading();
+            try {
+                const result = await signInWithPopup(auth, googleProvider);
+                const userData = await getUserData(result.user.uid);
+                if (userData) {
+                    // Redirect based on role
+                    window.location.href = userData.role === 'teacher' ? 
+                        'teacher-dashboard.html' : 'student-dashboard.html';
+                } else {
+                    // If no role is set, show role selection modal
+                    closeModal('loginModal');
+                    showModal('roleModal');
+                }
+            } catch (error) {
+                alert('Error signing in with Google: ' + error.message);
+            } finally {
+                hideLoading();
+            }
+        });
+
+        // Handle registration form submission
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            showLoading();
+
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                hideLoading();
+                return;
+            }
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                closeModal('registerModal');
+                showModal('roleModal');
+            } catch (error) {
+                alert('Error creating account: ' + error.message);
+            } finally {
+                hideLoading();
+            }
+        });
+
+        // Handle role selection
+        window.selectRole = async (role) => {
+            sessionStorage.setItem('selectedRole', role); // Store the selected role
+            const user = auth.currentUser;
+            if (!user) {
+                alert('No user signed in');
+                return;
+            }
+
+            try {
+                await setDoc(doc(db, 'users', user.uid), {
+                    role: role,
+                    email: user.email,
+                    createdAt: new Date().toISOString()
+                });
+                
+                closeModal('roleModal');
+                showModal('profileModal');
+                
+                // Show teacher code field if role is teacher
+                document.getElementById('teacherCode').style.display = 
+                    role === 'teacher' ? 'block' : 'none';
+            } catch (error) {
+                alert('Error setting role: ' + error.message);
+            }
+        };
+
+        // Handle profile form submission
+        document.getElementById('profileForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            showLoading();
+
+            const user = auth.currentUser;
+            if (!user) {
+                alert('No user signed in');
+                hideLoading();
+                return;
+            }
+
+            const selectedRole = sessionStorage.getItem('selectedRole') || 'student';
+
+            try {
+                // For teachers, verify access code if needed
+                if (selectedRole === 'teacher') {
+                    const accessCode = document.getElementById('accessCode').value;
+                    if (accessCode !== 'TEACHER123') {
+                        alert('Invalid teacher access code');
+                        hideLoading();
+                        return;
+                    }
+                }
+
+                await setDoc(doc(db, 'users', user.uid), {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    birthDate: document.getElementById('birthDate').value,
+                    email: user.email,
+                    role: selectedRole,
+                    createdAt: new Date(),
+                    lastLogin: new Date()
+                });
+
+                // Redirect based on role after profile completion
+                window.location.href = selectedRole === 'teacher' ? 
+                    'teacher-dashboard.html' : 'student-dashboard.html';
+                    
+                // Clear the stored role after successful registration
+                sessionStorage.removeItem('selectedRole');
+            } catch (error) {
+                alert('Error saving profile: ' + error.message);
+            } finally {
+                hideLoading();
+            }
+        });
+    </script>
+</body>
+</html>

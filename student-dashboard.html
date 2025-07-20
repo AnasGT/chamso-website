@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم الطالب - منصة تعلم القرآن الكريم</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">📖</div>
+                    <h1>منصة تعلم القرآن الكريم</h1>
+                </div>
+                <div class="user-menu">
+                    <span id="userName" class="user-name"></span>
+                    <button class="btn btn-secondary" onclick="logout()">تسجيل الخروج</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+            <div class="dashboard-content">
+                <div class="page-header">
+                    <h2>لوحة تحكم الطالب</h2>
+                    <p class="welcome-message">مرحباً بك، ادعوا الله أن يزيدك علماً وتقوى</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <!-- Attendance Section -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>تسجيل الحضور</h3>
+                            <div class="card-icon">✓</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="attendance-section">
+                                <div class="attendance-status" id="attendanceStatus">
+                                    <p>لم يتم تسجيل الحضور اليوم</p>
+                                </div>
+                                <button id="markAttendanceBtn" class="btn btn-primary" onclick="markAttendance()">
+                                    تسجيل الحضور
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Schedule Section -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>جدول الحصص</h3>
+                            <div class="card-icon">📅</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="schedule-controls">
+                                <button class="btn btn-outline" onclick="showTodaySchedule()">اليوم</button>
+                                <button class="btn btn-outline" onclick="showWeeklySchedule()">الأسبوع</button>
+                            </div>
+                            <div id="scheduleContent" class="schedule-content">
+                                <p class="no-data">لا توجد حصص مجدولة</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notes Section -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>ملاحظات الأستاذ</h3>
+                            <div class="card-icon">📝</div>
+                        </div>
+                        <div class="card-content">
+                            <div id="teacherNotes" class="notes-content">
+                                <p class="no-data">لا توجد ملاحظات</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Account Management -->
+                    <div class="dashboard-card account-card">
+                        <div class="card-header">
+                            <h3>إدارة الحساب</h3>
+                            <div class="card-icon">⚙️</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="account-actions">
+                                <button class="btn btn-danger" onclick="showDeleteAccountModal()">
+                                    حذف الحساب نهائياً
+                                </button>
+                                <small>سيتم حذف جميع البيانات المرتبطة بحسابك</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add this inside dashboard-grid div -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>إرسال ملاحظة للأستاذ</h3>
+                            <div class="card-icon">✉️</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="note-form">
+                                <textarea id="studentNoteContent" class="form-control" 
+                                          placeholder="اكتب ملاحظتك هنا..." rows="3"></textarea>
+                                <button class="btn btn-primary" onclick="addNoteToTeacher()">
+                                    إرسال الملاحظة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Delete Account Confirmation Modal -->
+    <div id="deleteAccountModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>تأكيد حذف الحساب</h3>
+                <span class="close" onclick="closeModal('deleteAccountModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="warning-message">
+                    <p><strong>تحذير:</strong> هذا الإجراء لا يمكن التراجع عنه!</p>
+                    <p>سيتم حذف جميع بياناتك من المنصة نهائياً، بما في ذلك:</p>
+                    <ul>
+                        <li>سجل الحضور</li>
+                        <li>الملاحظات الشخصية</li>
+                        <li>جميع البيانات الأخرى</li>
+                    </ul>
+                </div>
+                <form id="deleteAccountForm">
+                    <div class="form-group">
+                        <label for="deletePassword">أدخل كلمة المرور للتأكيد</label>
+                        <input type="password" id="deletePassword" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('deleteAccountModal')">
+                            إلغاء
+                        </button>
+                        <button type="submit" class="btn btn-danger">
+                            حذف الحساب نهائياً
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>جاري التحميل...</p>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { checkStudentAuth, handleLogout } from './js/auth-utils.js';
+        
+        // Check authentication on page load
+        checkStudentAuth().catch(console.error);
+        
+        // Make logout function available globally
+        window.logout = handleLogout;
+    </script>
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/student-dashboard.js"></script>
+</body>
+</html>
